@@ -6,12 +6,14 @@ customers = [
     ("Samuel", 450)
 ]
 
-def tier(balance):
+
+def level(balance):
     if balance >= 1000:
         return "Premium"
     elif balance >= 500:
         return "Standard"
     return "Basic"
 
+
 for name, balance in customers:
-    print(f"{name}: {tier(balance)} ({balance} ETB)")
+    print(f"{name}: {level(balance)} ({balance} ETB)")

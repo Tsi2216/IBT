@@ -1,0 +1,7 @@
+Almaz,150
+Dawit,200
+Almaz,100
+Samuel,300
+Dawit,150
+Hanna,400
+Samuel,100

@@ -1,0 +1,6 @@
+Transaction Report
+-------------------------
+Samuel: 400.00
+Hanna: 400.00
+Dawit: 350.00
+Almaz: 250.00

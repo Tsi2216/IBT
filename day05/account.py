@@ -12,18 +12,13 @@ class Account:
     def deposit(self, amount):
         if amount > 0:
             self.__balance += amount
-        else:
-            print("Deposit amount must be positive")
 
     def withdraw(self, amount):
-        if amount > self.__balance:
-            print("Insufficient funds")
-        elif amount < 0:
-            print("Withdrawal amount must be positive")
-        else:
+        if amount <= self.__balance:
             self.__balance -= amount
+        else:
+            print("Insufficient funds")
 
     def statement(self):
         print("Owner:", self.owner)
-        print("Account Number:", self.account_number)
         print("Balance:", self.balance)

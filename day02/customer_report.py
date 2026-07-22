@@ -1,10 +1,35 @@
-total = float(input("Enter the total bill amount: "))
-number_of_people = int(input("Enter the number of people: "))
+customers = [
+    ("Almaz", 1500),
+    ("Dawit", 700),
+    ("Tigist", 200),
+    ("Hanna", 1200),
+    ("Samuel", 450),
+]
 
-def split_the_bill(total, number_of_people, rate=0.10):
-    total_with_tip = total + (total * rate)
-    return total_with_tip / number_of_people
 
-amount_per_person = split_the_bill(total, number_of_people)
+def tier(balance):
+    if balance >= 1000:
+        return "Premium"
+    elif balance >= 500:
+        return "Standard"
+    return "Basic"
 
-print(f"Each person pays: {amount_per_person:.2f} ETB")
+
+premium = 0
+standard = 0
+basic = 0
+
+for name, balance in customers:
+    customer_tier = tier(balance)
+    print(f"{name}: {customer_tier} ({balance} ETB)")
+
+    if customer_tier == "Premium":
+        premium += 1
+    elif customer_tier == "Standard":
+        standard += 1
+    else:
+        basic += 1
+
+print(f"Premium: {premium}")
+print(f"Standard: {standard}")
+print(f"Basic: {basic}")

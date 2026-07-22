@@ -1,19 +1,43 @@
-customers = [
-    ("Almaz", 1500),
-    ("Dawit", 700),
-    ("Tigist", 200),
-    ("Hanna", 1200),
-    ("Samuel", 450)
-]
+# 1. Temperature label
+
+temperature = float(input("Enter temperature in °C: "))
+
+if temperature < 15:
+    print("cold")
+elif temperature <= 28:
+    print("warm")
+else:
+    print("hot")
 
 
-def level(balance):
-    if balance >= 1000:
-        return "Premium"
-    elif balance >= 500:
-        return "Standard"
-    return "Basic"
+# 2. Receipt loop
+
+for i in range(1, 11):
+    print(f"Receipt #{i}")
 
 
-for name, balance in customers:
-    print(f"{name}: {level(balance)} ({balance} ETB)")
+# 3. Even numbers
+
+for i in range(1, 21):
+    if i % 2 == 0:
+        print(i)
+
+
+# 4. Discount function
+
+def apply_discount(price, percent=10):
+    return price - (price * percent / 100)
+
+print(apply_discount(100))
+print(apply_discount(100, 20))
+
+
+# 5. Countdown
+
+count = 5
+
+while count >= 1:
+    print(count)
+    count -= 1
+
+print("Liftoff!")

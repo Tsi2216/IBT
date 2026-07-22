@@ -8,12 +8,11 @@ class CurrentAccount(Account):
         self.overdraft = overdraft
 
     def withdraw(self, amount):
-
         if amount <= self.balance + self.overdraft:
             self._Account__balance -= amount
+            self.history.append(("withdraw", amount))
             print("Withdrawal completed")
             self.notify("Withdrawal completed")
-
         else:
             print("Overdraft limit exceeded")
 

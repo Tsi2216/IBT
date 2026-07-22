@@ -1,0 +1,4 @@
+Samuel: 500.0
+Almaz: 400.0
+Dawit: 300.0
+Hanna: 300.0

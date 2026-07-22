@@ -1,0 +1,5 @@
+Paracetamol,15
+Amoxicillin,8
+Vitamin C,20
+Bandage,5
+Insulin,12

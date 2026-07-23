@@ -11,13 +11,16 @@ class Account:
     def deposit(self, amount):
         if amount <= 0:
             raise ValueError("Amount must be positive")
+
         self.__balance += amount
 
     def withdraw(self, amount):
         if amount <= 0:
             raise ValueError("Amount must be positive")
+
         if amount > self.__balance:
             raise ValueError("Insufficient funds")
+
         self.__balance -= amount
 
     def statement(self):
@@ -26,9 +29,10 @@ class Account:
         print(f"Balance: {self.balance} ETB")
 
 
-account = Account("Almaz", "1001")
+# Test
+account = Account("Almaz", "1001", 1000)
 
-account.deposit(1500)
-account.withdraw(500)
+account.deposit(500)
+account.withdraw(200)
 
 account.statement()

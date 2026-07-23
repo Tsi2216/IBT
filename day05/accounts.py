@@ -11,17 +11,20 @@ class Account:
     def deposit(self, amount):
         if amount <= 0:
             raise ValueError("Amount must be positive")
+
         self.__balance += amount
 
     def withdraw(self, amount):
         if amount <= 0:
             raise ValueError("Amount must be positive")
+
         if amount > self.__balance:
             raise ValueError("Insufficient funds")
+
         self.__balance -= amount
 
     def statement(self):
-        print(f"Account")
+        print("Account")
         print(f"Owner: {self.owner}")
         print(f"Account Number: {self.account_number}")
         print(f"Balance: {self.balance} ETB")
@@ -37,7 +40,9 @@ class SavingsAccount(Account):
 
     def statement(self):
         print("Savings Account")
-        super().statement()
+        print(f"Owner: {self.owner}")
+        print(f"Account Number: {self.account_number}")
+        print(f"Balance: {self.balance} ETB")
 
 
 class CurrentAccount(Account):
@@ -48,6 +53,7 @@ class CurrentAccount(Account):
     def withdraw(self, amount):
         if amount <= 0:
             raise ValueError("Amount must be positive")
+
         if amount > self.balance + self.overdraft:
             raise ValueError("Overdraft limit exceeded")
 
@@ -55,17 +61,31 @@ class CurrentAccount(Account):
 
     def statement(self):
         print("Current Account")
-        super().statement()
+        print(f"Owner: {self.owner}")
+        print(f"Account Number: {self.account_number}")
+        print(f"Balance: {self.balance} ETB")
+
+
+# Test
+
+account1 = Account("Almaz", "1001", 1000)
+
+account2 = SavingsAccount("Dawit", "1002", 2000)
+
+account3 = CurrentAccount("Hanna", "1003", 500)
+
+
+account2.add_interest()
+
+account3.withdraw(1000)
 
 
 accounts = [
-    Account("Almaz", "1001", 1000),
-    SavingsAccount("Dawit", "1002", 2000),
-    CurrentAccount("Hanna", "1003", 500)
+    account1,
+    account2,
+    account3
 ]
 
-accounts[1].add_interest()
-accounts[2].withdraw(1000)
 
 for account in accounts:
     account.statement()

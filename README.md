@@ -1,4 +1,4 @@
-# IBT2 - Full Stack Development Portfolio
+CodeOps - Full Stack Development Portfolio
 
 This repository contains my projects, exercises, and learning progress for the IBT Full Stack Development program.
 

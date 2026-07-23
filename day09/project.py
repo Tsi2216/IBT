@@ -33,10 +33,9 @@ class AccountRegistry:
     def top_by_balance(self, n=5):
         accounts = sorted(
             self.by_number.values(),
-            key=lambda account: account.balance,
+            key=lambda a: a.balance,
             reverse=True
         )
-
         return accounts[:n]
 
     def find_by_number(self, number):
@@ -56,7 +55,7 @@ class AccountRegistry:
             return 0
 
         def total(history):
-            if len(history) == 0:
+            if not history:
                 return 0
 
             return history[0][1] + total(history[1:])
@@ -83,19 +82,16 @@ def binary_search(items, target):
     return -1
 
 
-# Day 9: Branch tree
+# Day 9: Branch Tree
 
 class Branch:
-    def __init__(self, name, balance=0):
+    def __init__(self, name):
         self.name = name
-        self.balance = balance
         self.children = []
-
-    def add_branch(self, branch):
-        self.children.append(branch)
+        self.accounts = []
 
     def total_balance(self):
-        total = self.balance
+        total = sum(account.balance for account in self.accounts)
 
         for child in self.children:
             total += child.total_balance()
@@ -103,84 +99,52 @@ class Branch:
         return total
 
 
-head_office = Branch("Head Office", 100000)
-
-north = Branch("North Region", 50000)
-south = Branch("South Region", 40000)
-
-branch1 = Branch("Branch 1", 15000)
-branch2 = Branch("Branch 2", 12000)
-branch3 = Branch("Branch 3", 18000)
-
-head_office.add_branch(north)
-head_office.add_branch(south)
-
-north.add_branch(branch1)
-north.add_branch(branch2)
-
-south.add_branch(branch3)
+head_office = Branch("Head Office")
+addis_region = Branch("Addis Region")
+bole_branch = Branch("Bole Branch")
 
 
-# Day 9: Transfers graph
+account1 = Account("Almaz", "1001", 1000)
+account2 = Account("Dawit", "1002", 2000)
+account3 = Account("Hanna", "1003", 500)
+
+
+head_office.children.append(addis_region)
+addis_region.children.append(bole_branch)
+
+head_office.accounts.append(account1)
+addis_region.accounts.append(account2)
+bole_branch.accounts.append(account3)
+
+
+# Day 9: Transfers Graph
 
 transfers = {
-    "CBE-1": ["CBE-2", "CBE-3"],
-    "CBE-2": ["CBE-4"],
-    "CBE-3": ["CBE-5"],
-    "CBE-4": [],
-    "CBE-5": []
+    "1001": ["1002", "1003"],
+    "1002": ["1003"],
+    "1003": ["1004"],
+    "1004": []
 }
 
 
-def bfs(graph, start):
-    visited = []
+def bfs(transfers, start):
+    visited = set()
     queue = deque([start])
 
     while queue:
         current = queue.popleft()
 
         if current not in visited:
-            visited.append(current)
+            visited.add(current)
 
-            for person in graph[current]:
-                queue.append(person)
+            for receiver in transfers[current]:
+                queue.append(receiver)
 
     return visited
 
 
-# Testing
-
-account1 = Account("Almaz", "1001", 1000)
-account2 = Account("Dawit", "1002", 2000)
-account3 = Account("Hanna", "1003", 500)
-
-account1.deposit(300)
-account1.withdraw(100)
-
-registry = AccountRegistry()
-
-registry.add(account1)
-registry.add(account2)
-registry.add(account3)
-
-
-print("Search:")
-print(registry.find_by_number("1002").owner)
-
-
-print("\nLeaderboard:")
-
-for account in registry.top_by_balance(2):
-    print(account.owner, account.balance)
-
-
-print("\nTransactions:")
-print(registry.total_transactions("1001"))
-
-
-print("\nBank Total:")
+print("Bank total:")
 print(head_office.total_balance())
 
-
-print("\nReachable from CBE-1:")
-print(bfs(transfers, "CBE-1"))
+print("Accounts reachable from 1001:")
+print(bfs(transfers, "1001"))

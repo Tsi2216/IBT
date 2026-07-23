@@ -1,23 +1,3 @@
-# 1. Name the Big-O
-
-# List index lookup: O(1)
-# Accessing an element by index jumps directly to the memory location.
-
-# Single loop: O(n)
-# The loop checks every item once.
-
-# Nested loop: O(n^2)
-# For every item, another loop runs through all items.
-
-# Dictionary lookup: O(1)
-# Dictionary uses hashing to find values directly.
-
-# Binary search: O(log n)
-# Each step cuts the search area in half.
-
-
-# 2. List vs. dict lookup
-
 import time
 
 accounts_list = [f"ACC{i}" for i in range(100000)]

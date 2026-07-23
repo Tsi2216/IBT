@@ -1,6 +1,8 @@
-# IBT2 - Day 01
+# IBT2 - Full Stack Development Portfolio
 
-This repository contains my Day 01 exercises for the IBT Full Stack Development program.
+This repository contains my projects, exercises, and learning progress for the IBT Full Stack Development program.
+
+It includes daily exercises, mini-projects, and programming practice completed throughout the program.
 
 Created by:
 Tsion Shimelis
